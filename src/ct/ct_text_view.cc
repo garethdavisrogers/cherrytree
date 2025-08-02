@@ -26,6 +26,7 @@
 #include "ct_actions.h"
 #include "ct_list.h"
 #include "ct_clipboard.h"
+#include <iostream>
 
 std::unordered_map<std::string, GspellChecker*> CtTextView::_static_spell_checkers;
 
@@ -669,6 +670,10 @@ void CtTextView::for_event_after_key_press(GdkEvent* event, const Glib::ustring&
                 }
             }
         }
+    }
+    else if(GDK_KEY_BackSpace == event->key.keyval || GDK_KEY_Delete == event->key.keyval)
+    {
+        std::cout << "BackSpace or Delete was pressed" << std::endl;
     }
 }
 
