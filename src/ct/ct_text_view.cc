@@ -671,9 +671,12 @@ void CtTextView::for_event_after_key_press(GdkEvent* event, const Glib::ustring&
             }
         }
     }
-    else if(GDK_KEY_BackSpace == event->key.keyval || GDK_KEY_Delete == event->key.keyval)
-    {
-        std::cout << "BackSpace or Delete was pressed" << std::endl;
+    else if(GDK_KEY_BackSpace == event->key.keyval || GDK_KEY_Delete == event->key.keyval){
+        Gtk::TextIter iter = text_buffer->get_insert()->get_iter();
+        int line_offset = iter.get_line_offset();
+        if(line_offset == 0  && iter.forward_line()){
+            std::cout << "Line offset: "<< line_offset << " and is forward line" << std::endl;
+        }
     }
 }
 
